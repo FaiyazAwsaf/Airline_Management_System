@@ -7,13 +7,20 @@ public class LandingPage extends JFrame {
 
     public LandingPage() {
         setTitle("Airline Management System");
-        setSize(600, 400);
+        setSize(900, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Center the frame
+        setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel(new GridBagLayout());
+
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        JPanel titlePanel = new JPanel(new BorderLayout());
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
+
+        ImageIcon AirlineImage = new ImageIcon("F:\\Programming\\Projects\\Airline_Management_System\\src\\AirlineLogo.png");
+        JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
         // Admin Login Button 
         JButton adminButton = new JButton("Admin Login");
@@ -38,15 +45,24 @@ public class LandingPage extends JFrame {
         });
 
         // Add buttons to the panel
+
+        titlePanel.setBounds(0,0,1920,400);
+        titlePanel.add(titleImage, BorderLayout.NORTH);
+        titlePanel.setBackground(new Color(23, 10, 57));
+
+        add(titlePanel);
+
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        panel.add(adminButton, gbc);
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.CENTER;
+        buttonPanel.add(adminButton, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 0;
-        panel.add(userButton, gbc);
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.CENTER;
+        buttonPanel.add(userButton, gbc);
 
-        add(panel);
+        add(buttonPanel);
     }
 
     public static void main(String[] args) {
