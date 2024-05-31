@@ -7,29 +7,31 @@ public class LandingPage extends JFrame {
 
     public LandingPage() {
         setTitle("Airline Management System");
-        setSize(900, 900);
+        setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Center the frame
+        setLocationRelativeTo(null);
+        //setResizable(false);
         setLayout(new BorderLayout());
 
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
-        JPanel titlePanel = new JPanel(new BorderLayout());
+        JPanel titlePanel = new JPanel(new GridBagLayout());
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        GridBagConstraints tgbc = new GridBagConstraints();
 
-        ImageIcon AirlineImage = new ImageIcon("F:\\Programming\\Projects\\Airline_Management_System\\src\\AirlineLogo.png");
+        GridBagConstraints bgbc = new GridBagConstraints();
+        bgbc.insets = new Insets(10, 10, 10, 10);
+
+        ImageIcon AirlineImage = new ImageIcon("src\\AirlineLogo.png");
         JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
-        // Admin Login Button 
         JButton adminButton = new JButton("Admin Login");
         adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AdminLoginFrame adminLoginFrame = new AdminLoginFrame();
                 adminLoginFrame.setVisible(true);
-                dispose(); // Close the current frame
+                dispose();
             }
         });
 
@@ -40,29 +42,31 @@ public class LandingPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 UserLoginFrame userLoginFrame = new UserLoginFrame();
                 userLoginFrame.setVisible(true);
-                dispose(); // Close the current frame
+                dispose();
             }
         });
 
-        // Add buttons to the panel
 
-        titlePanel.setBounds(0,0,1920,400);
-        titlePanel.add(titleImage, BorderLayout.NORTH);
+        tgbc.gridx = 0;
+        tgbc.gridy = 0;
+        tgbc.anchor = GridBagConstraints.CENTER;
+
+        titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(23, 10, 57));
 
-        add(titlePanel);
+        add(titlePanel, BorderLayout.NORTH);
 
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.anchor = GridBagConstraints.CENTER;
-        buttonPanel.add(adminButton, gbc);
+        bgbc.gridx = 0;
+        bgbc.gridy = 4;
+        bgbc.anchor = GridBagConstraints.CENTER;
+        buttonPanel.add(adminButton, bgbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        gbc.anchor = GridBagConstraints.CENTER;
-        buttonPanel.add(userButton, gbc);
+        bgbc.gridx = 1;
+        bgbc.gridy = 4;
+        bgbc.anchor = GridBagConstraints.CENTER;
+        buttonPanel.add(userButton, bgbc);
 
-        add(buttonPanel);
+        add(buttonPanel,BorderLayout.CENTER);
     }
 
     public static void main(String[] args) {
@@ -72,4 +76,3 @@ public class LandingPage extends JFrame {
         });
     }
 }
-

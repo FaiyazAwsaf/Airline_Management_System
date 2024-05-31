@@ -5,7 +5,7 @@ public class AdminHomePage extends JFrame {
 
     public AdminHomePage(){
         setTitle("Admin Page");
-        setSize(600, 400);
+        setSize(1000, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
