@@ -70,6 +70,11 @@ public class AdminLoginFrame extends JFrame {
         bgbc.gridwidth = 2;
         bgbc.anchor = GridBagConstraints.CENTER;
         loginButton = new JButton("Login");
+        loginButton.setFont(new Font("Freeman", Font.BOLD, 15));
+        loginButton.setPreferredSize(new Dimension(70,25));
+        loginButton.setBackground(new Color(16, 105, 179));
+        loginButton.setMargin(new Insets(10, 5, 10, 5));
+        loginButton.setForeground(Color.WHITE);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,7 +93,9 @@ public class AdminLoginFrame extends JFrame {
         bgbc.gridwidth = 2;
         bgbc.anchor = GridBagConstraints.CENTER;
         returnButton = new JButton("Return to Landing Page");
-        returnButton.setPreferredSize(new Dimension(200, 15));
+        returnButton.setPreferredSize(new Dimension(200, 12));
+        returnButton.setFont(new Font("Freeman", Font.BOLD, 10));
+
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

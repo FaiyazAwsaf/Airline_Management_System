@@ -39,21 +39,41 @@ public class AdminHomePage extends JFrame {
         bgbc.gridy = 0;
         bgbc.fill = GridBagConstraints.HORIZONTAL;
         bgbc.anchor = GridBagConstraints.CENTER;
+        flightAssignmentButton.setPreferredSize(new Dimension(200,40));
+        flightAssignmentButton.setBackground(new Color(9, 13, 97));
+        flightAssignmentButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        flightAssignmentButton.setMargin(new Insets(10, 5, 10, 5));
+        flightAssignmentButton.setForeground(Color.WHITE);
         buttonPanel.add(flightAssignmentButton, bgbc);
 
         JButton flightCancellationButton = new JButton("Flight Cancellation");
         bgbc.gridx = 0;
         bgbc.gridy = 1;
+        flightCancellationButton.setPreferredSize(new Dimension(200,40));
+        flightCancellationButton.setBackground(new Color(9, 13, 97));
+        flightCancellationButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        flightCancellationButton.setMargin(new Insets(10, 5, 10, 5));
+        flightCancellationButton.setForeground(Color.WHITE);
         buttonPanel.add(flightCancellationButton, bgbc);
 
         JButton passengerListButton =  new JButton("Passenger List");
         bgbc.gridx = 0;
         bgbc.gridy = 2;
+        passengerListButton.setPreferredSize(new Dimension(200,40));
+        passengerListButton.setBackground(new Color(9, 13, 97));
+        passengerListButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        passengerListButton.setMargin(new Insets(10, 5, 10, 5));
+        passengerListButton.setForeground(Color.WHITE);
         buttonPanel.add(passengerListButton, bgbc);
 
         JButton backButton =  new JButton("Back Home");
         bgbc.gridx = 0;
         bgbc.gridy = 3;
+        backButton.setPreferredSize(new Dimension(200,40));
+        backButton.setBackground(new Color(9, 13, 97));
+        backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        backButton.setMargin(new Insets(10, 5, 10, 5));
+        backButton.setForeground(Color.WHITE);
         buttonPanel.add(backButton, bgbc);
 
         flightAssignmentButton.addActionListener(new ActionListener() {

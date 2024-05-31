@@ -20,12 +20,19 @@ public class LandingPage extends JFrame {
         GridBagConstraints tgbc = new GridBagConstraints();
 
         GridBagConstraints bgbc = new GridBagConstraints();
-        bgbc.insets = new Insets(10, 10, 10, 10);
+        bgbc.insets = new Insets(10, 40, 10, 40);
 
         ImageIcon AirlineImage = new ImageIcon("src\\AirlineLogo.png");
         JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
         JButton adminButton = new JButton("Admin Login");
+        adminButton.setFont(new Font("Freeman", Font.BOLD, 20));
+        adminButton.setBackground(new Color(16, 105, 179));
+        adminButton.setPreferredSize(new Dimension(150,50));
+        adminButton.setMargin(new Insets(10, 5, 10, 5));
+        adminButton.setForeground(Color.WHITE);
+
+
         adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,6 +44,12 @@ public class LandingPage extends JFrame {
 
         // User Login Button
         JButton userButton = new JButton("User Login");
+        userButton.setFont(new Font("Freeman", Font.BOLD, 20));
+        userButton.setBackground(new Color(16, 105, 179));
+        userButton.setPreferredSize(new Dimension(150,50));
+        userButton.setMargin(new Insets(10, 5, 10, 5));
+        userButton.setForeground(Color.WHITE);
+
         userButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,6 +68,8 @@ public class LandingPage extends JFrame {
         titlePanel.setBackground(new Color(7, 0, 0, 174));
 
         add(titlePanel, BorderLayout.NORTH);
+
+        buttonPanel.setBackground(new Color(246, 255, 253));
 
         bgbc.gridx = 0;
         bgbc.gridy = 4;
