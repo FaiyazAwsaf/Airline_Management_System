@@ -10,7 +10,7 @@ public class UserLoginFrame extends JFrame {
 
     public UserLoginFrame() {
         setTitle("User Login");
-        setSize(1000, 700);
+        setSize(1000, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(1,2));
@@ -88,7 +88,7 @@ public class UserLoginFrame extends JFrame {
 
         add(buttonPanel);
 
-        ImageIcon AirlineImage = new ImageIcon("src\\AirlineLogo.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\AdminPageImage.png");
         JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
         tgbc.gridx = 0;

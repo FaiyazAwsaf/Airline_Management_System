@@ -10,7 +10,7 @@ public class LandingPage extends JFrame {
         setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        //setResizable(false);
+        setResizable(false);
         setLayout(new BorderLayout());
 
 
@@ -52,7 +52,7 @@ public class LandingPage extends JFrame {
         tgbc.anchor = GridBagConstraints.CENTER;
 
         titlePanel.add(titleImage);
-        titlePanel.setBackground(new Color(23, 10, 57));
+        titlePanel.setBackground(new Color(7, 0, 0, 174));
 
         add(titlePanel, BorderLayout.NORTH);
 

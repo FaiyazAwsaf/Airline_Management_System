@@ -12,7 +12,7 @@ public class AdminLoginFrame extends JFrame {
 
     public AdminLoginFrame() {
         setTitle("Admin Login");
-        setSize(1000, 700);
+        setSize(1000, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(1,2));
@@ -24,35 +24,44 @@ public class AdminLoginFrame extends JFrame {
         JPanel titlePanel = new JPanel(new GridBagLayout());
         GridBagConstraints tgbc =  new GridBagConstraints();
 
+
         // Greeting label
         bgbc.gridx = 0;
         bgbc.gridy = 0;
         bgbc.gridwidth = 2;
         bgbc.anchor = GridBagConstraints.CENTER;
-        buttonPanel.add(new JLabel("Astra Airlines Admin Login"), bgbc);
+        JLabel heading = new JLabel("Astra Airlines - Admin Login");
+        heading.setFont(new Font("Freeman", Font.BOLD, 25));
+        heading.setForeground(new Color(23, 10, 57));
+        buttonPanel.add(heading, bgbc);
 
         // Username and password componenets
         bgbc.gridx = 0;
         bgbc.gridy = 1;
         bgbc.gridwidth = 1;
-        bgbc.anchor = GridBagConstraints.EAST;
-        buttonPanel.add(new JLabel("Username:"), bgbc);
+        bgbc.anchor = GridBagConstraints.WEST;
+        JLabel username = new JLabel("Username:");
+        username.setFont(new Font("Hind", Font.BOLD, 15));
+        buttonPanel.add(username, bgbc);
 
         bgbc.gridx = 1;
         bgbc.gridy = 1;
-        bgbc.anchor = GridBagConstraints.WEST;
-        userField = new JTextField(10);
+        bgbc.gridwidth = 1;
+        bgbc.anchor = GridBagConstraints.EAST;
+        userField = new JTextField(15);
         buttonPanel.add(userField, bgbc);
 
         bgbc.gridx = 0;
         bgbc.gridy = 2;
-        bgbc.anchor = GridBagConstraints.EAST;
-        buttonPanel.add(new JLabel("Password:"), bgbc);
+        bgbc.anchor = GridBagConstraints.WEST;
+        JLabel password = new JLabel("Password:");
+        password.setFont(new Font("Hind", Font.BOLD, 15));
+        buttonPanel.add(password, bgbc);
 
         bgbc.gridx = 1;
         bgbc.gridy = 2;
-        bgbc.anchor = GridBagConstraints.WEST;
-        passField = new JPasswordField(10);
+        bgbc.anchor = GridBagConstraints.EAST;
+        passField = new JPasswordField(15);
         buttonPanel.add(passField, bgbc);
 
         // Login and return buttons
@@ -92,7 +101,7 @@ public class AdminLoginFrame extends JFrame {
 
         add(buttonPanel);
 
-        ImageIcon AirlineImage = new ImageIcon("src\\AirlineLogo.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\AdminPageImage.png");
         JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
         tgbc.gridx = 0;
@@ -100,7 +109,7 @@ public class AdminLoginFrame extends JFrame {
         tgbc.anchor = GridBagConstraints.CENTER;
 
         titlePanel.add(titleImage);
-        titlePanel.setBackground(new Color(23, 10, 57));
+        titlePanel.setBackground(new Color(0, 0, 0));
         add(titlePanel);
     }
 
@@ -123,5 +132,11 @@ public class AdminLoginFrame extends JFrame {
             e.printStackTrace();
         }
         return false;
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            AdminLoginFrame frame = new AdminLoginFrame();
+            frame.setVisible(true);
+        });
     }
 }
