@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.jar.JarEntry;
 
@@ -88,7 +89,7 @@ public class TicketBooking extends JFrame{
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                if (Objects.equals(values[1], departureField.getText()) && Objects.equals(values[2], arrivalField.getText()) && Objects.equals(values[3], flightDateSpinner.getValue().toString())) {
+                if (Objects.equals(values[1], departureField.getText()) && Objects.equals(values[2], arrivalField.getText())) {
                     codes = new String[]{values[0]};
                 }
             }
