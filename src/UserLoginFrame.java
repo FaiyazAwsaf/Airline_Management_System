@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class UserLoginFrame extends JFrame {
     private JTextField userField;
@@ -59,12 +62,11 @@ public class UserLoginFrame extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if(validateCredentials(userField.getText(), new String(passField.getPassword()))) {
-//                    AdminHomePage adminHomePage = new AdminHomePage();
-//                    adminHomePage.setVisible(true);
-//                    dispose();
-//                }
-//                login function likha lagbe
+                if(validateCredentials(userField.getText(), new String(passField.getPassword()))) {
+                    FlightSearching flightBooking = new FlightSearching();
+                    flightBooking.setVisible(true);
+                    dispose();
+                }
             }
         });
         buttonPanel.add(loginButton, bgbc);
@@ -98,6 +100,24 @@ public class UserLoginFrame extends JFrame {
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(23, 10, 57));
         add(titlePanel);
+    }
+    private boolean validateCredentials(String username, String password) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/Credentials.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] credentials = line.split(",");
+                if (credentials.length == 2) {
+                    String fileUsername = credentials[0];
+                    String filePassword = credentials[1];
+                    if (fileUsername.equals(username) && filePassword.equals(password)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 
