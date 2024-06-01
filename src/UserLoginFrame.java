@@ -63,8 +63,8 @@ public class UserLoginFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(validateCredentials(userField.getText(), new String(passField.getPassword()))) {
-                    FlightSearching flightBooking = new FlightSearching();
-                    flightBooking.setVisible(true);
+                    UserHomePage userHomePage = new UserHomePage();
+                    userHomePage.setVisible(true);
                     dispose();
                 }
             }
@@ -102,7 +102,7 @@ public class UserLoginFrame extends JFrame {
         add(titlePanel);
     }
     private boolean validateCredentials(String username, String password) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/Credentials.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/user_credentials.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] credentials = line.split(",");
@@ -118,6 +118,13 @@ public class UserLoginFrame extends JFrame {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            UserLoginFrame frame = new UserLoginFrame();
+            frame.setVisible(true);
+        });
     }
 }
 

@@ -123,7 +123,7 @@ public class AdminLoginFrame extends JFrame {
 
 
     private boolean validateCredentials(String username, String password) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/Credentials.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/admin_credentials.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] credentials = line.split(",");
