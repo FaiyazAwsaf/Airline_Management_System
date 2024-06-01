@@ -1,23 +1,9 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.jar.JarEntry;
 
 public class TicketBooking extends JFrame{
-    private JTextField flightIdField;
-    private JTextField departureField;
-    private JTextField arrivalField;
-    private JComboBox<String> classType;
-    private JSpinner flightDateSpinner;
-    private JComboBox<String> flightCodes;
-
     public TicketBooking() {
         setTitle("User Page");
         setSize(900, 600);
@@ -27,104 +13,106 @@ public class TicketBooking extends JFrame{
         setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("src\\FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
 
-        JPanel formPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 10, 10);
-        formPanel.setBackground(new Color(225, 217, 203));
+        JPanel formPanel = new JPanel(new GridLayout(11, 2, 10, 10));
 
-        JLabel ticketBookingLabel = new JLabel("Book Your Ticket");
-        ticketBookingLabel.setSize(15, 15);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 6;
-        formPanel.add(ticketBookingLabel, gbc);
+        JTextField nameField = new JTextField();
+        JTextField contactField = new JTextField();
+        JTextField emailField = new JTextField();
 
-        JPanel infoPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints igbc = new GridBagConstraints();
-        igbc.insets = new Insets(5, 5, 10, 5);
+        JTextField departureField = new JTextField();
+        JTextField arrivalField = new JTextField();
+        JSpinner dateSpinner = new JSpinner(new SpinnerDateModel());
+        dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "EEE MMM dd HH:mm yyyy"));
 
-        JLabel departureCityLabel = new JLabel("Departing City: ");
-        igbc.gridx = 0;
-        igbc.gridy = 0;
-        infoPanel.add(departureCityLabel, igbc);
+        JButton searchButton = new JButton("Search Flights");
+        JButton bookButton = new JButton("Book Ticket");
+        JButton resetButton = new JButton("Reset");
 
-        departureField = new JTextField(12);
-        igbc.gridx = 1;
-        igbc.gridy = 0;
-        infoPanel.add(departureField, igbc);
+        formPanel.add(new JLabel("Name:"));
+        formPanel.add(nameField);
+        formPanel.add(new JLabel("Contact:"));
+        formPanel.add(contactField);
+        formPanel.add(new JLabel("Email:"));
+        formPanel.add(emailField);
+        formPanel.add(new JLabel("Departing City:"));
+        formPanel.add(departureField);
+        formPanel.add(new JLabel("Arriving City:"));
+        formPanel.add(arrivalField);
+        formPanel.add(new JLabel("Date (YYYY-MM-DD):"));
+        formPanel.add(dateSpinner);
 
-        JLabel arrivalCityLabel = new JLabel("Arriving City: ");
-        igbc.gridx = 0;
-        igbc.gridy = 1;
-        infoPanel.add(arrivalCityLabel, igbc);
+        formPanel.add(searchButton);
+        formPanel.add(bookButton);
+        formPanel.add(resetButton);
 
-        arrivalField = new JTextField(12);
-        igbc.gridx = 1;
-        igbc.gridy = 1;
-        infoPanel.add(arrivalField, igbc);
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Searching for flights...");
+            }
+        });
 
-        JLabel dateOfFlightLabel = new JLabel("Date of Flight: ");
-        igbc.gridx = 0;
-        igbc.gridy = 2;
-        infoPanel.add(dateOfFlightLabel, igbc);
-
-        flightDateSpinner = new JSpinner(new SpinnerDateModel());
-        flightDateSpinner.setEditor(new JSpinner.DateEditor(flightDateSpinner, "EEE MMM dd HH:mm yyyy"));
-        igbc.gridx = 1;
-        igbc.gridy = 2;
-        infoPanel.add(flightDateSpinner, igbc);
-
-        JLabel flightIdLabel = new JLabel("Flight ID: ");
-        igbc.gridx = 4;
-        igbc.gridy = 0;
-        infoPanel.add(flightIdLabel, igbc);
-
-        String[] codes = new String[0];
-        try (BufferedReader br = new BufferedReader(new FileReader("flights_data.csv"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                if (Objects.equals(values[1], departureField.getText()) && Objects.equals(values[2], arrivalField.getText())) {
-                    codes = new String[]{values[0]};
+        bookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Code to book ticket based on user input
+                if (nameField.getText().isEmpty() || contactField.getText().isEmpty() || emailField.getText().isEmpty()
+                        || departureField.getText().isEmpty() || arrivalField.getText().isEmpty() || dateSpinner.toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    // Display ticket in a dialog box
+                    displayTicket(nameField.getText(), contactField.getText(), emailField.getText(),
+                            departureField.getText(), arrivalField.getText(), dateSpinner.toString());
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        });
 
-        flightCodes = new JComboBox<>(codes);
-        igbc.gridx = 5;
-        igbc.gridy = 0;
-        infoPanel.add(flightCodes, igbc);
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nameField.setText("");
+                contactField.setText("");
+                emailField.setText("");
+                departureField.setText("");
+                arrivalField.setText("");
+            }
+        });
 
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(titlePanel, BorderLayout.NORTH);
-        topPanel.add(formPanel, BorderLayout.CENTER);
-        topPanel.add(infoPanel, BorderLayout.SOUTH);
+
+        JPanel headerPanel = new JPanel();
+        JLabel headerLabel = new JLabel("Book Your Ticket");
+        headerLabel.setSize(20,20);
+        headerPanel.add(headerLabel);
 
         add(topPanel, BorderLayout.NORTH);
+        add(headerPanel, BorderLayout.CENTER);
+        add(formPanel, BorderLayout.SOUTH);
     }
 
-//    public void setFlightCodes(){
-//        try(BufferedReader br = new BufferedReader(new FileReader("flights_data.csv"))){
-//            String line;
-//            String[] codes;
-//            while ((line = br.readLine()) != null) {
-//                String[] values = line.split(",");
-//                if(Objects.equals(values[1], departureField.getText()) && Objects.equals(values[2], arrivalField.getText()) && Objects.equals(values[3], flightDateSpinner.toString())){
-//                    codes = new String[]{values[0]};
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }    
-//    }
+    private void displayTicket(String name, String contact, String email, String source, String destination, String date) {
+        JPanel ticketPanel = new JPanel();
+        ticketPanel.setLayout(new BoxLayout(ticketPanel, BoxLayout.Y_AXIS));
+        ticketPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        ticketPanel.add(new JLabel("***** Airline Ticket *****"));
+        ticketPanel.add(new JLabel("Name: " + name));
+        ticketPanel.add(new JLabel("Contact: " + contact));
+        ticketPanel.add(new JLabel("Email: " + email));
+        ticketPanel.add(new JLabel("From: " + source));
+        ticketPanel.add(new JLabel("To: " + destination));
+        ticketPanel.add(new JLabel("Date: " + date));
+        ticketPanel.add(new JLabel("**************************"));
+
+        JOptionPane.showMessageDialog(this, ticketPanel, "Ticket Confirmation", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     public static void main(String[] args) {
         TicketBooking frame = new TicketBooking();
