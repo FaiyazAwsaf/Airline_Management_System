@@ -37,7 +37,7 @@ public class FlightAssignment extends JFrame {
 
         JPanel formPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 10, 10);
+        gbc.insets = new Insets(5, 5, 5, 5);
         formPanel.setBackground(new Color(225, 217, 203));
 
         JLabel flightAssignLabel = new JLabel("Flight Assignment");
@@ -95,7 +95,7 @@ public class FlightAssignment extends JFrame {
         gbc.gridwidth = 1;
         formPanel.add(flightCodeLabel, gbc);
 
-        flightCode = new JTextField(10);
+        flightCode = new JTextField(7);
         gbc.gridx = 5;
         gbc.gridy = 2;
         formPanel.add(flightCode, gbc);
