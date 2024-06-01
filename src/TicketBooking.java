@@ -11,6 +11,7 @@ public class TicketBooking extends JFrame{
     private JTextField arrivalField;
     private JComboBox<String> classType;
     private JSpinner flightDateSpinner;
+    private JComboBox<String> flightCodes;
 
     public TicketBooking() {setTitle("User Page");
         setSize(900, 600);
@@ -76,6 +77,12 @@ public class TicketBooking extends JFrame{
         igbc.gridx = 4;
         igbc.gridy = 0;
         infoPanel.add(flightIdLabel, igbc);
+
+        flightCodes = new JComboBox<>(new String[]{"Select an option","F202","D222","C651","880"});
+        igbc.gridx = 5;
+        igbc.gridy = 0;
+        infoPanel.add(flightCodes, igbc);
+
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(titlePanel, BorderLayout.NORTH);
