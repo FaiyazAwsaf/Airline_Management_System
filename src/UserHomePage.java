@@ -56,19 +56,10 @@ public class UserHomePage extends JFrame {
         flightCancellationButton.setForeground(Color.WHITE);
         buttonPanel.add(flightCancellationButton, bgbc);
 
-        JButton passengerListButton =  new JButton("Passenger List");
-        bgbc.gridx = 0;
-        bgbc.gridy = 2;
-        passengerListButton.setPreferredSize(new Dimension(200,40));
-        passengerListButton.setBackground(new Color(9, 13, 97));
-        passengerListButton.setFont(new Font("Rowdies", Font.BOLD, 15));
-        passengerListButton.setMargin(new Insets(10, 5, 10, 5));
-        passengerListButton.setForeground(Color.WHITE);
-        buttonPanel.add(passengerListButton, bgbc);
 
         JButton backButton =  new JButton("Log Out");
         bgbc.gridx = 0;
-        bgbc.gridy = 3;
+        bgbc.gridy = 2;
         backButton.setPreferredSize(new Dimension(200,40));
         backButton.setBackground(new Color(146, 19, 19));
         backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
@@ -88,14 +79,6 @@ public class UserHomePage extends JFrame {
         flightCancellationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        passengerListButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
 
             }
         });
