@@ -30,7 +30,7 @@ public class FlightAssignment extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("src\\FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));

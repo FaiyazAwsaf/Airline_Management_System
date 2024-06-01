@@ -26,7 +26,7 @@ public class FlightSearching extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
@@ -63,7 +63,7 @@ public class FlightSearching extends JFrame {
         JButton searchButton = new JButton("Search");
         gbc.gridx = 4;
         gbc.gridy = 0;
-        searchButton.setPreferredSize(new Dimension(100, 30));
+        searchButton.setPreferredSize(new Dimension(100, 10));
         searchButton.setBackground(new Color(9, 13, 97));
         searchButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         searchButton.setMargin(new Insets(10, 5, 10, 5));
@@ -80,7 +80,7 @@ public class FlightSearching extends JFrame {
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbcButton = new GridBagConstraints();
-        gbcButton.insets = new Insets(10, 5, 10, 5);
+        gbcButton.insets = new Insets(5, 5, 5, 5);
         gbcButton.gridx = 0;
         gbcButton.gridy = 0;
 
