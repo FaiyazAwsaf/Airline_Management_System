@@ -19,7 +19,6 @@ public class FlightAssignment extends JFrame {
     private Map<String, Integer> airplaneModels;
 
 
-
     public FlightAssignment(){
         setTitle("Admin Page");
         setSize(1000, 750);

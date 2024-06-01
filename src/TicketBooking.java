@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 import java.util.jar.JarEntry;
 
 public class TicketBooking extends JFrame{
-    private JTextField flightID;
-    private JTextField departure;
-    private JTextField arrival;
+    private JTextField flightIdField;
+    private JTextField departureField;
+    private JTextField arrivalField;
     private JComboBox<String> classType;
+    private JSpinner flightDateSpinner;
 
     public TicketBooking() {setTitle("User Page");
         setSize(900, 600);
@@ -38,25 +39,43 @@ public class TicketBooking extends JFrame{
 
         JPanel infoPanel = new JPanel(new GridBagLayout());
         GridBagConstraints igbc = new GridBagConstraints();
-        igbc.insets = new Insets(5,10,10,10);
+        igbc.insets = new Insets(5,5,10,5);
 
         JLabel departureCityLabel = new JLabel("Departing City: ");
         igbc.gridx = 0;
         igbc.gridy = 0;
         infoPanel.add(departureCityLabel, igbc);
 
+        departureField = new JTextField(12);
+        igbc.gridx = 1;
+        igbc.gridy = 0;
+        infoPanel.add(departureField, igbc);
+
         JLabel arrivalCityLabel = new JLabel("Arriving City: ");
         igbc.gridx = 0;
         igbc.gridy = 1;
         infoPanel.add(arrivalCityLabel, igbc);
+
+        arrivalField = new JTextField(12);
+        igbc.gridx = 1;
+        igbc.gridy = 1;
+        infoPanel.add(arrivalField, igbc);
 
         JLabel dateOfFlightLabel = new JLabel("Date of Flight: ");
         igbc.gridx = 0;
         igbc.gridy = 2;
         infoPanel.add(dateOfFlightLabel, igbc);
 
-        JLabel flightIdLabel = new JLabel();
+        flightDateSpinner = new JSpinner(new SpinnerDateModel());
+        flightDateSpinner.setEditor(new JSpinner.DateEditor(flightDateSpinner,"EEE MMM dd HH:mm:ss yyyy"));
+        igbc.gridx = 1;
+        igbc.gridy = 2;
+        infoPanel.add(flightDateSpinner, igbc);
 
+        JLabel flightIdLabel = new JLabel("Flight ID: ");
+        igbc.gridx = 4;
+        igbc.gridy = 0;
+        infoPanel.add(flightIdLabel, igbc);
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(titlePanel, BorderLayout.NORTH);
