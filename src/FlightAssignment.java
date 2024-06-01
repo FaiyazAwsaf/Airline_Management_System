@@ -3,9 +3,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class FlightAssignment extends JFrame {
     private JTextField flightCode;
@@ -17,10 +17,9 @@ public class FlightAssignment extends JFrame {
     private DefaultTableModel flightsTableModel;
     private JComboBox<String> airplaneModelComboBox;
     private Map<String, Integer> airplaneModels;
+    private static final String FILE_PATH = "flights_data.csv";
 
-
-
-    public FlightAssignment(){
+    public FlightAssignment() {
         setTitle("Admin Page");
         setSize(1000, 750);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,23 +29,23 @@ public class FlightAssignment extends JFrame {
 
         JPanel titlePanel = new JPanel();
         ImageIcon AirlineImage = new ImageIcon("src\\FlightImage.png");
-        JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
+        JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
 
-
         JPanel formPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5,10,10,10);
+        gbc.insets = new Insets(5, 10, 10, 10);
         formPanel.setBackground(new Color(225, 217, 203));
 
         JLabel flightAssignLabel = new JLabel("Flight Assignment");
-        flightAssignLabel.setSize(15,15);
+        flightAssignLabel.setSize(15, 15);
+        flightAssignLabel.setFont(new Font("Open Sans", Font.BOLD, 25));
+        flightAssignLabel.setForeground(new Color(4,5,2));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 6;
         formPanel.add(flightAssignLabel, gbc);
-
 
         JLabel airplaneModelLabel = new JLabel("Airplane Model");
         airplaneModelLabel.setFont(new Font("Hind", Font.BOLD, 15));
@@ -137,53 +136,51 @@ public class FlightAssignment extends JFrame {
         gbc.gridy = 2;
         formPanel.add(takeoffDateSpinner, gbc);
 
-
-
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(225, 217, 203));
         buttonPanel.setLayout(new GridBagLayout());
         GridBagConstraints bgbc = new GridBagConstraints();
-        bgbc.insets = new Insets(20,20,20,20);
+        bgbc.insets = new Insets(20, 20, 20, 20);
 
         JButton saveButton = new JButton("Save");
         bgbc.gridx = 0;
         bgbc.gridy = 0;
-        saveButton.setPreferredSize(new Dimension(100,30));
+        saveButton.setPreferredSize(new Dimension(100, 30));
         saveButton.setBackground(new Color(9, 13, 97));
         saveButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         saveButton.setMargin(new Insets(10, 5, 10, 5));
         saveButton.setForeground(Color.WHITE);
-        buttonPanel.add(saveButton,bgbc);
+        buttonPanel.add(saveButton, bgbc);
 
         JButton editButton = new JButton("Edit");
         bgbc.gridx = 1;
         bgbc.gridy = 0;
-        editButton.setPreferredSize(new Dimension(100,30));
+        editButton.setPreferredSize(new Dimension(100, 30));
         editButton.setBackground(new Color(9, 13, 97));
         editButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         editButton.setMargin(new Insets(10, 5, 10, 5));
         editButton.setForeground(Color.WHITE);
-        buttonPanel.add(editButton,bgbc);
+        buttonPanel.add(editButton, bgbc);
 
         JButton deleteButton = new JButton("Delete");
         bgbc.gridx = 2;
         bgbc.gridy = 0;
-        deleteButton.setPreferredSize(new Dimension(100,30));
+        deleteButton.setPreferredSize(new Dimension(100, 30));
         deleteButton.setBackground(new Color(9, 13, 97));
         deleteButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         deleteButton.setMargin(new Insets(10, 5, 10, 5));
         deleteButton.setForeground(Color.WHITE);
-        buttonPanel.add(deleteButton,bgbc);
+        buttonPanel.add(deleteButton, bgbc);
 
         JButton backButton = new JButton("Back");
         bgbc.gridx = 3;
         bgbc.gridy = 0;
-        backButton.setPreferredSize(new Dimension(100,30));
+        backButton.setPreferredSize(new Dimension(100, 30));
         backButton.setBackground(new Color(9, 13, 97));
         backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         backButton.setMargin(new Insets(10, 5, 10, 5));
         backButton.setForeground(Color.WHITE);
-        buttonPanel.add(backButton,bgbc);
+        buttonPanel.add(backButton, bgbc);
 
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -193,8 +190,8 @@ public class FlightAssignment extends JFrame {
         });
 
         editButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 editFlight();
             }
         });
@@ -215,7 +212,6 @@ public class FlightAssignment extends JFrame {
             }
         });
 
-
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(titlePanel, BorderLayout.NORTH);
         topPanel.add(formPanel, BorderLayout.CENTER);
@@ -232,7 +228,9 @@ public class FlightAssignment extends JFrame {
         JScrollPane tableScrollPane = new JScrollPane(flightsTable);
 
         add(topPanel, BorderLayout.CENTER);
-        add(tableScrollPane,BorderLayout.SOUTH);
+        add(tableScrollPane, BorderLayout.SOUTH);
+
+        loadFlightsFromFile();
     }
 
     private void saveFlight() {
@@ -244,6 +242,7 @@ public class FlightAssignment extends JFrame {
         String seats = seatsField.getText();
 
         flightsTableModel.addRow(new Object[]{flightCode, source, destination, takeoffDate, aircraft, seats});
+        saveFlightsToFile();
 
         this.flightCode.setText("");
         sourceComboBox.setSelectedIndex(0);
@@ -258,16 +257,18 @@ public class FlightAssignment extends JFrame {
             String flightCode = this.flightCode.getText();
             String source = (String) sourceComboBox.getSelectedItem();
             String destination = (String) destinationComboBox.getSelectedItem();
-            //String takeoffDate = takeoffDateSpinner.getJFormattedTextField().getText();
+            String takeoffDate = takeoffDateSpinner.getValue().toString();
             String aircraft = (String) airplaneModelComboBox.getSelectedItem();
             String seats = seatsField.getText();
 
             flightsTableModel.setValueAt(flightCode, selectedRow, 0);
             flightsTableModel.setValueAt(source, selectedRow, 1);
             flightsTableModel.setValueAt(destination, selectedRow, 2);
-            //flightsTableModel.setValueAt(takeoffDate, selectedRow, 3);
+            flightsTableModel.setValueAt(takeoffDate, selectedRow, 3);
             flightsTableModel.setValueAt(aircraft, selectedRow, 4);
             flightsTableModel.setValueAt(seats, selectedRow, 5);
+
+            saveFlightsToFile();
 
             this.flightCode.setText("");
             sourceComboBox.setSelectedIndex(0);
@@ -283,10 +284,43 @@ public class FlightAssignment extends JFrame {
         int selectedRow = flightsTable.getSelectedRow();
         if (selectedRow >= 0) {
             flightsTableModel.removeRow(selectedRow);
+            saveFlightsToFile();
         } else {
             JOptionPane.showMessageDialog(this, "Please select a flight to delete.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    private void loadFlightsFromFile() {
+        File file = new File(FILE_PATH);
+        if (file.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] values = line.split(",");
+                    flightsTableModel.addRow(values);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void saveFlightsToFile() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (int i = 0; i < flightsTableModel.getRowCount(); i++) {
+                for (int j = 0; j < flightsTableModel.getColumnCount(); j++) {
+                    bw.write(flightsTableModel.getValueAt(i, j).toString());
+                    if (j < flightsTableModel.getColumnCount() - 1) {
+                        bw.write(",");
+                    }
+                }
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             FlightAssignment frame = new FlightAssignment();
