@@ -26,8 +26,8 @@ public class UserHomePage extends JFrame {
 
         add(titlePanel, BorderLayout.NORTH);
 
-        //Button panel stuff
 
+        //Button panel stuff
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridBagLayout());
         GridBagConstraints bgbc = new GridBagConstraints();
@@ -46,7 +46,7 @@ public class UserHomePage extends JFrame {
         bookTicketButton.setForeground(Color.WHITE);
         buttonPanel.add(bookTicketButton, bgbc);
 
-        JButton flightCancellationButton = new JButton("Cancellation Requests");
+        JButton flightCancellationButton = new JButton("Cancel Your Ticket");
         bgbc.gridx = 0;
         bgbc.gridy = 1;
         flightCancellationButton.setPreferredSize(new Dimension(200,40));
@@ -103,8 +103,8 @@ public class UserHomePage extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UserHomePage userHomePage = new UserHomePage();
-                userHomePage.setVisible(true);
+                UserLoginFrame userLoginFrame = new UserLoginFrame();
+                userLoginFrame.setVisible(true);
                 dispose();
             }
         });
