@@ -46,7 +46,7 @@ public class AdminHomePage extends JFrame {
         flightAssignmentButton.setForeground(Color.WHITE);
         buttonPanel.add(flightAssignmentButton, bgbc);
 
-        JButton flightCancellationButton = new JButton("Flight Cancellation");
+        JButton flightCancellationButton = new JButton("Cancellation Requests");
         bgbc.gridx = 0;
         bgbc.gridy = 1;
         flightCancellationButton.setPreferredSize(new Dimension(200,40));
@@ -66,11 +66,11 @@ public class AdminHomePage extends JFrame {
         passengerListButton.setForeground(Color.WHITE);
         buttonPanel.add(passengerListButton, bgbc);
 
-        JButton backButton =  new JButton("Back Home");
+        JButton backButton =  new JButton("Log Out");
         bgbc.gridx = 0;
         bgbc.gridy = 3;
         backButton.setPreferredSize(new Dimension(200,40));
-        backButton.setBackground(new Color(9, 13, 97));
+        backButton.setBackground(new Color(146, 19, 19));
         backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         backButton.setMargin(new Insets(10, 5, 10, 5));
         backButton.setForeground(Color.WHITE);
@@ -79,7 +79,9 @@ public class AdminHomePage extends JFrame {
         flightAssignmentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                FlightAssignment flightAssignment = new FlightAssignment();
+                flightAssignment.setVisible(true);
+                dispose();
             }
         });
 

@@ -12,7 +12,7 @@ public class AdminLoginFrame extends JFrame {
 
     public AdminLoginFrame() {
         setTitle("Admin Login");
-        setSize(1000, 500);
+        setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(1,2));
@@ -93,8 +93,8 @@ public class AdminLoginFrame extends JFrame {
         bgbc.gridwidth = 2;
         bgbc.anchor = GridBagConstraints.CENTER;
         returnButton = new JButton("Return to Landing Page");
-        returnButton.setPreferredSize(new Dimension(200, 12));
-        returnButton.setFont(new Font("Freeman", Font.BOLD, 10));
+        returnButton.setPreferredSize(new Dimension(200, 15));
+        returnButton.setFont(new Font("Freeman", Font.BOLD, 12));
 
         returnButton.addActionListener(new ActionListener() {
             @Override
