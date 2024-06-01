@@ -15,7 +15,7 @@ public class TicketBooking extends JFrame{
         setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("Rescources/FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("Resources/FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));

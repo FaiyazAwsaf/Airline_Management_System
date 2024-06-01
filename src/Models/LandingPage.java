@@ -24,7 +24,7 @@ public class LandingPage extends JFrame {
         GridBagConstraints bgbc = new GridBagConstraints();
         bgbc.insets = new Insets(10, 40, 10, 40);
 
-        ImageIcon AirlineImage = new ImageIcon("src\\AirlineLogo.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\AirlineLogo.png");
         JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
         JButton adminButton = new JButton("Admin Login");

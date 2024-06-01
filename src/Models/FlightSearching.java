@@ -25,14 +25,12 @@ public class FlightSearching extends JFrame {
         setResizable(false);
         setLayout(new BorderLayout());
 
-
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("src\\FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
         add(titlePanel, BorderLayout.NORTH);
-
 
         JPanel searchPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -80,15 +78,29 @@ public class FlightSearching extends JFrame {
         JScrollPane scrollPane = new JScrollPane(searchResultsTable);
         searchResultTablePanel.add(scrollPane, BorderLayout.CENTER);
 
-        JButton selectButton = new JButton("Select Flight");
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbcButton = new GridBagConstraints();
+        gbcButton.insets = new Insets(10, 5, 10, 5);
+        gbcButton.gridx = 0;
+        gbcButton.gridy = 0;
+
+        JButton selectButton = new JButton("Select");
         selectButton.setPreferredSize(new Dimension(100, 30));
         selectButton.setBackground(new Color(9, 13, 97));
         selectButton.setFont(new Font("Rowdies", Font.BOLD, 15));
-        selectButton.setMargin(new Insets(10, 5, 10, 5));
         selectButton.setForeground(Color.WHITE);
+        buttonPanel.add(selectButton, gbcButton);
 
-        searchResultTablePanel.add(selectButton, BorderLayout.SOUTH);
+        gbcButton.gridy = 1;
 
+        JButton backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(100, 30));
+        backButton.setBackground(new Color(9, 13, 97));
+        backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        backButton.setForeground(Color.WHITE);
+        buttonPanel.add(backButton, gbcButton);
+
+        searchResultTablePanel.add(buttonPanel, BorderLayout.SOUTH);
         add(searchResultTablePanel, BorderLayout.SOUTH);
 
         searchButton.addActionListener(new ActionListener() {
@@ -107,6 +119,15 @@ public class FlightSearching extends JFrame {
                 String destinationCity = (String) destinationComboBox.getSelectedItem();
                 // Open a new page for booking ticket.
                 // Make the departing and arriving city constant
+            }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserHomePage userHomePage = new UserHomePage();
+                userHomePage.setVisible(true);
+                dispose();
             }
         });
     }

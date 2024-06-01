@@ -92,7 +92,7 @@ public class UserLoginFrame extends JFrame {
 
         add(buttonPanel);
 
-        ImageIcon AirlineImage = new ImageIcon("src\\AdminPageImage.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\AdminPageImage.png");
         JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
         tgbc.gridx = 0;
