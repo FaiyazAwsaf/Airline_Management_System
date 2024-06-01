@@ -15,10 +15,10 @@ public class FlightSearching extends JFrame {
     private JComboBox<String> destinationComboBox;
     private JTable searchResultsTable;
     private DefaultTableModel searchResultsTableModel;
-    private static final String FILE_PATH = "flights_data.csv";
+    private static final String FILE_PATH = "src\\Data_Storage\\flights_data.csv";
 
     public FlightSearching() {
-        setTitle("Flight Booking");
+        setTitle("Search Flights");
         setSize(1000, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
