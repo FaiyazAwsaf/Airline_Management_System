@@ -1,11 +1,13 @@
+package Models;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminHomePage extends JFrame {
-    public AdminHomePage() {
-        setTitle("Admin Home Page");
+public class UserHomePage extends JFrame {
+    public UserHomePage() {
+        setTitle("User Home Page");
         setSize(1000,700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -26,27 +28,27 @@ public class AdminHomePage extends JFrame {
 
         add(titlePanel, BorderLayout.NORTH);
 
-        //Button panel stuff
 
+        //Button panel stuff
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridBagLayout());
         GridBagConstraints bgbc = new GridBagConstraints();
         bgbc.insets = new Insets(20,0,20,0);
         buttonPanel.setBackground(new Color(211, 231, 239));
 
-        JButton flightAssignmentButton = new JButton("Flight Assignment");
+        JButton bookTicketButton = new JButton("Book Your Ticket");
         bgbc.gridx = 0;
         bgbc.gridy = 0;
         bgbc.fill = GridBagConstraints.HORIZONTAL;
         bgbc.anchor = GridBagConstraints.CENTER;
-        flightAssignmentButton.setPreferredSize(new Dimension(200,40));
-        flightAssignmentButton.setBackground(new Color(9, 13, 97));
-        flightAssignmentButton.setFont(new Font("Rowdies", Font.BOLD, 15));
-        flightAssignmentButton.setMargin(new Insets(10, 5, 10, 5));
-        flightAssignmentButton.setForeground(Color.WHITE);
-        buttonPanel.add(flightAssignmentButton, bgbc);
+        bookTicketButton.setPreferredSize(new Dimension(200,40));
+        bookTicketButton.setBackground(new Color(9, 13, 97));
+        bookTicketButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        bookTicketButton.setMargin(new Insets(10, 5, 10, 5));
+        bookTicketButton.setForeground(Color.WHITE);
+        buttonPanel.add(bookTicketButton, bgbc);
 
-        JButton flightCancellationButton = new JButton("Cancellation Requests");
+        JButton flightCancellationButton = new JButton("Cancel Your Ticket");
         bgbc.gridx = 0;
         bgbc.gridy = 1;
         flightCancellationButton.setPreferredSize(new Dimension(200,40));
@@ -56,19 +58,10 @@ public class AdminHomePage extends JFrame {
         flightCancellationButton.setForeground(Color.WHITE);
         buttonPanel.add(flightCancellationButton, bgbc);
 
-        JButton passengerListButton =  new JButton("Passenger List");
-        bgbc.gridx = 0;
-        bgbc.gridy = 2;
-        passengerListButton.setPreferredSize(new Dimension(200,40));
-        passengerListButton.setBackground(new Color(9, 13, 97));
-        passengerListButton.setFont(new Font("Rowdies", Font.BOLD, 15));
-        passengerListButton.setMargin(new Insets(10, 5, 10, 5));
-        passengerListButton.setForeground(Color.WHITE);
-        buttonPanel.add(passengerListButton, bgbc);
 
         JButton backButton =  new JButton("Log Out");
         bgbc.gridx = 0;
-        bgbc.gridy = 3;
+        bgbc.gridy = 2;
         backButton.setPreferredSize(new Dimension(200,40));
         backButton.setBackground(new Color(146, 19, 19));
         backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
@@ -76,11 +69,11 @@ public class AdminHomePage extends JFrame {
         backButton.setForeground(Color.WHITE);
         buttonPanel.add(backButton, bgbc);
 
-        flightAssignmentButton.addActionListener(new ActionListener() {
+        bookTicketButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FlightAssignment flightAssignment = new FlightAssignment();
-                flightAssignment.setVisible(true);
+                FlightSearching flightSearching = new FlightSearching();
+                flightSearching.setVisible(true);
                 dispose();
             }
         });
@@ -88,23 +81,14 @@ public class AdminHomePage extends JFrame {
         flightCancellationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        passengerListButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
             }
         });
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminLoginFrame adminHomePage = new AdminLoginFrame();
-                adminHomePage.setVisible(true);
+                UserLoginFrame userLoginFrame = new UserLoginFrame();
+                userLoginFrame.setVisible(true);
                 dispose();
             }
         });
@@ -113,9 +97,8 @@ public class AdminHomePage extends JFrame {
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            AdminHomePage frame = new AdminHomePage();
+            UserHomePage frame = new UserHomePage();
             frame.setVisible(true);
         });
     }
 }
-
