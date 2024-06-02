@@ -4,72 +4,122 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+import java.io.*;
 
-public class TicketBooking extends JFrame{
-    public TicketBooking() {
+public class TicketBooking extends JFrame {
+    private String flightCode, departureCity, destinationCity, departureDateAndTime, airplaneModel, seatNumber;
+
+    public TicketBooking(String flightCode, String departureCity, String destinationCity, String departureDateAndTime, String airplaneModel, int seats) {
+        this.flightCode = flightCode;
+        this.departureCity = departureCity;
+        this.destinationCity = destinationCity;
+        this.departureDateAndTime = departureDateAndTime;
+        this.airplaneModel = airplaneModel;
+        this.seatNumber = generateRandomNumberWithLetter(seats);
+
         setTitle("User Page");
-        setSize(900, 600);
+        setSize(1000, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("Rescources/FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
 
-        JPanel formPanel = new JPanel(new GridLayout(11, 2, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(10, 4, 10, 10));
 
         JTextField nameField = new JTextField();
         JTextField contactField = new JTextField();
         JTextField emailField = new JTextField();
+        JTextField passportIDField = new JTextField();
+        JComboBox<String> genderField = new JComboBox<>(new String[]{"Male", "Female"});
+        JComboBox<String> nationalityField = new JComboBox<>(new String[]{"Bangladeshi", "Indian", "American", "Emirati", "Canadian"});
+
+        JTextField flightCodeField = new JTextField();
+        flightCodeField.setText(flightCode);
+        flightCodeField.setEditable(false);
+
+        JTextField aircraftModelField = new JTextField();
+        aircraftModelField.setText(airplaneModel);
+        aircraftModelField.setEditable(false);
+
+        JTextField seatsField = new JTextField();
+        seatsField.setText(seatNumber);
+        seatsField.setEditable(false);
 
         JTextField departureField = new JTextField();
-        JTextField arrivalField = new JTextField();
-        JSpinner dateSpinner = new JSpinner(new SpinnerDateModel());
-        dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "EEE MMM dd HH:mm yyyy"));
+        departureField.setText(departureCity);
+        departureField.setEditable(false);
 
-        JButton searchButton = new JButton("Search Flights");
+        JTextField arrivalField = new JTextField();
+        arrivalField.setText(destinationCity);
+        arrivalField.setEditable(false);
+
+        JTextField dateField = new JTextField();
+        dateField.setText(departureDateAndTime);
+        dateField.setEditable(false);
+
         JButton bookButton = new JButton("Book Ticket");
         JButton resetButton = new JButton("Reset");
+        JButton backButton = new JButton("Back");
 
         formPanel.add(new JLabel("Name:"));
         formPanel.add(nameField);
-        formPanel.add(new JLabel("Contact:"));
+        formPanel.add(new JLabel("Gender:"));
+        formPanel.add(genderField);
+        formPanel.add(new JLabel("Nationality:"));
+        formPanel.add(nationalityField);
+        formPanel.add(new JLabel("Passport Number:"));
+        formPanel.add(passportIDField);
+        formPanel.add(new JLabel("Contact Number:"));
         formPanel.add(contactField);
         formPanel.add(new JLabel("Email:"));
         formPanel.add(emailField);
+
+        formPanel.add(new JLabel("Flight Code:"));
+        formPanel.add(flightCodeField);
         formPanel.add(new JLabel("Departing City:"));
         formPanel.add(departureField);
         formPanel.add(new JLabel("Arriving City:"));
         formPanel.add(arrivalField);
         formPanel.add(new JLabel("Date (YYYY-MM-DD):"));
-        formPanel.add(dateSpinner);
+        formPanel.add(dateField);
+        formPanel.add(new JLabel("Aircraft Model:"));
+        formPanel.add(aircraftModelField);
+        formPanel.add(new JLabel("Seat Number:"));
+        formPanel.add(seatsField);
 
-        formPanel.add(searchButton);
         formPanel.add(bookButton);
         formPanel.add(resetButton);
+        formPanel.add(backButton);
 
-        searchButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Searching for flights...");
+                FlightSearching flightSearching = new FlightSearching();
+                flightSearching.setVisible(true);
+                dispose();
             }
         });
 
         bookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Code to book ticket based on user input
                 if (nameField.getText().isEmpty() || contactField.getText().isEmpty() || emailField.getText().isEmpty()
-                        || departureField.getText().isEmpty() || arrivalField.getText().isEmpty() || dateSpinner.toString().isEmpty()) {
+                        || departureField.getText().isEmpty() || arrivalField.getText().isEmpty() || dateField.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    // Display ticket in a dialog box
                     displayTicket(nameField.getText(), contactField.getText(), emailField.getText(),
-                            departureField.getText(), arrivalField.getText(), dateSpinner.toString());
+                            departureField.getText(), arrivalField.getText(), dateField.getText(),
+                            flightCodeField.getText(), aircraftModelField.getText(), seatsField.getText());
+                    storePassengerInfo(nameField.getText(), contactField.getText(), emailField.getText(),passportIDField.getText(), (String) genderField.getSelectedItem(),(String) nationalityField.getSelectedItem(),
+                            departureField.getText(), arrivalField.getText(), dateField.getText(),
+                            flightCodeField.getText(), aircraftModelField.getText(), seatsField.getText());
                 }
             }
         });
@@ -80,18 +130,16 @@ public class TicketBooking extends JFrame{
                 nameField.setText("");
                 contactField.setText("");
                 emailField.setText("");
-                departureField.setText("");
-                arrivalField.setText("");
+                passportIDField.setText("");
             }
         });
-
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(titlePanel, BorderLayout.NORTH);
 
         JPanel headerPanel = new JPanel();
         JLabel headerLabel = new JLabel("Book Your Ticket");
-        headerLabel.setSize(20,20);
+        headerLabel.setSize(20, 20);
         headerPanel.add(headerLabel);
 
         add(topPanel, BorderLayout.NORTH);
@@ -99,25 +147,44 @@ public class TicketBooking extends JFrame{
         add(formPanel, BorderLayout.SOUTH);
     }
 
-    private void displayTicket(String name, String contact, String email, String source, String destination, String date) {
+    private void displayTicket(String name, String contact, String email, String source, String destination, String date,
+                               String flightCode, String airplaneModel, String seatNumber) {
         JPanel ticketPanel = new JPanel();
         ticketPanel.setLayout(new BoxLayout(ticketPanel, BoxLayout.Y_AXIS));
         ticketPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        ticketPanel.add(new JLabel("***** Airline Ticket *****"));
-        ticketPanel.add(new JLabel("Name: " + name));
-        ticketPanel.add(new JLabel("Contact: " + contact));
+        ticketPanel.add(new JLabel("***** Astra Airline Ticket *****"));
+        ticketPanel.add(new JLabel("Passenger Name: " + name));
+        ticketPanel.add(new JLabel("Contact Number: " + contact));
         ticketPanel.add(new JLabel("Email: " + email));
-        ticketPanel.add(new JLabel("From: " + source));
-        ticketPanel.add(new JLabel("To: " + destination));
-        ticketPanel.add(new JLabel("Date: " + date));
+        ticketPanel.add(new JLabel("Departure City: " + source));
+        ticketPanel.add(new JLabel("Arrival City: " + destination));
+        ticketPanel.add(new JLabel("Date and Time: " + date));
+        ticketPanel.add(new JLabel("Flight Code: " + flightCode));
+        ticketPanel.add(new JLabel("Aircraft Model: " + airplaneModel));
+        ticketPanel.add(new JLabel("Seat Number: " + seatNumber));
         ticketPanel.add(new JLabel("**************************"));
 
         JOptionPane.showMessageDialog(this, ticketPanel, "Ticket Confirmation", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public static void main(String[] args) {
-        TicketBooking frame = new TicketBooking();
-        frame.setVisible(true);
+    public static String generateRandomNumberWithLetter(int x) {
+        Random random = new Random();
+        return (random.nextInt(x) + 1) + "" + (char) ('A' + random.nextInt(3));
     }
+
+    private void storePassengerInfo(String name, String contact, String email, String passportID, String gender, String nationality, String flightCode, String departureCity, String destinationCity, String departureDateAndTime, String airplaneModel, String seatNumber) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\Data_Storage\\Passengers.txt", true))) {
+            writer.write(name + "," + contact + "," + email + "," + passportID + "," + gender + "," + nationality + "," + flightCode + "," + departureCity + "," + destinationCity + "," + departureDateAndTime + "," + airplaneModel + "," + seatNumber);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    // public static void main(String[] args) {
+    //     TicketBooking frame = new TicketBooking();
+    //     frame.setVisible(true);
+    // }
 }

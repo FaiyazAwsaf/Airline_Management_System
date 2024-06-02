@@ -18,7 +18,7 @@ public class UserHomePage extends JFrame {
         titlePanel.setLayout(new GridBagLayout());
         GridBagConstraints tgbc = new GridBagConstraints();
 
-        ImageIcon titleImage = new ImageIcon("src\\TitleImage.png");
+        ImageIcon titleImage = new ImageIcon("src\\Resources\\TitleImage.png");
         JLabel titleImageLabel = new JLabel(titleImage, SwingConstants.CENTER);
 
         tgbc.gridx = 0;

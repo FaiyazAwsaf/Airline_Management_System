@@ -27,7 +27,7 @@ public class FlightSearching extends JFrame {
 
 
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("src\\FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
@@ -103,35 +103,55 @@ public class FlightSearching extends JFrame {
         selectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String departureCity = (String) sourceComboBox.getSelectedItem();
-                String destinationCity = (String) destinationComboBox.getSelectedItem();
-                // Open a new page for booking ticket.
-                // Make the departing and arriving city constant
+                int selectedRow = searchResultsTable.getSelectedRow();
+                if (selectedRow != -1) {
+                    String flightCode = (String) searchResultsTableModel.getValueAt(selectedRow, 0);
+                    String departureCity = (String) searchResultsTableModel.getValueAt(selectedRow, 1);
+                    String destinationCity = (String) searchResultsTableModel.getValueAt(selectedRow, 2);
+                    String departureDateAndTime = (String) searchResultsTableModel.getValueAt(selectedRow, 3);
+                    String airplaneModel = (String) searchResultsTableModel.getValueAt(selectedRow, 4);
+                    int seats = (Integer) searchResultsTableModel.getValueAt(selectedRow, 5);
+
+                    TicketBooking ticketBooking = new TicketBooking(flightCode, departureCity, destinationCity, departureDateAndTime, airplaneModel, seats);
+                    ticketBooking.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select a flight.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
 
+
     private void searchFlights(String departureCity, String destinationCity) {
         searchResultsTableModel.setRowCount(0);
+        boolean flightFound = false; // Flag to check if any flight is found
+
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
+
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[1].equals(departureCity) && data[2].equals(destinationCity)) {
                     searchResultsTableModel.addRow(new Object[]{data[0], data[1], data[2], data[3], data[4], Integer.parseInt(data[5])});
+                    flightFound = true;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Display message if no flight is found
+        if (!flightFound) {
+            JOptionPane.showMessageDialog(this, "No Flights Available", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FlightSearching().setVisible(true);
-            }
+        SwingUtilities.invokeLater(() -> {
+            FlightSearching frame = new FlightSearching();
+            frame.setVisible(true);
         });
     }
 }

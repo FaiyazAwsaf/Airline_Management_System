@@ -92,7 +92,7 @@ public class UserLoginFrame extends JFrame {
 
         add(buttonPanel);
 
-        ImageIcon AirlineImage = new ImageIcon("src\\AdminPageImage.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\AdminPageImage.png");
         JLabel titleImage =  new JLabel(AirlineImage, SwingConstants.CENTER);
 
         tgbc.gridx = 0;
@@ -104,7 +104,7 @@ public class UserLoginFrame extends JFrame {
         add(titlePanel);
     }
     private boolean validateCredentials(String username, String password) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/user_credentials.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\Data_Storage\\user_credentials.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] credentials = line.split(",");

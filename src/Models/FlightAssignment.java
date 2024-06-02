@@ -30,14 +30,14 @@ public class FlightAssignment extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();
-        ImageIcon AirlineImage = new ImageIcon("src\\FlightImage.png");
+        ImageIcon AirlineImage = new ImageIcon("src\\Resources\\FlightImage.png");
         JLabel titleImage = new JLabel(AirlineImage, SwingConstants.CENTER);
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
 
         JPanel formPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 10, 10);
+        gbc.insets = new Insets(5, 5, 5, 5);
         formPanel.setBackground(new Color(225, 217, 203));
 
         JLabel flightAssignLabel = new JLabel("Flight Assignment");
