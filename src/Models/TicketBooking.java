@@ -118,9 +118,14 @@ public class TicketBooking extends JFrame {
                             departureField.getText(), arrivalField.getText(), dateField.getText(),
                             flightCodeField.getText(), aircraftModelField.getText(), seatsField.getText());
                     storePassengerInfo(nameField.getText(), contactField.getText(), emailField.getText(),passportIDField.getText(), (String) genderField.getSelectedItem(),(String) nationalityField.getSelectedItem(),
-                            departureField.getText(), arrivalField.getText(), dateField.getText(),
-                            flightCodeField.getText(), aircraftModelField.getText(), seatsField.getText());
+                            flightCodeField.getText(),departureField.getText(), arrivalField.getText(), dateField.getText(),
+                            aircraftModelField.getText(), seatsField.getText());
                 }
+
+                nameField.setText("");
+                contactField.setText("");
+                emailField.setText("");
+                passportIDField.setText("");
             }
         });
 

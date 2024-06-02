@@ -1,3 +1,3 @@
-srfgd,asg,afdgs,asg,Male,Bangladeshi,Dhaka,Dhaka,Sun Jun 02 00:34:36 BDT 2024,346536,Boeing 737,81B
-wfr,wefr,wefr,wefr,Male,Bangladeshi,Dhaka,Dhaka,Sun Jun 02 00:34:36 BDT 2024,346536,Boeing 737,32C
-Sadman MK,0193546938,smksmk1234@gmail.com,IND49785234584,Female,Indian,Dhaka,Kolkata,Thu Jul 04 15:30:43 BDT 2024,UX432,ATR 72-600,18C
+Yead Ahmed,0172348529,yeadahmed244@gmail.com,URO355,Male,Bangladeshi,4it,Dhaka,Dhaka,02 Jun 2024; 19:44,Boeing 787,154A
+Sadman MK,082345756,saddymaddy@gmail.com,AMR7849785,Female,American,TYR3566,Dhaka,Chittagong,07 Jun 2024; 20:16,Boeing 737,45A
+Faiyaz Awsaf,019945848163,faiyazawsaf@gmail.com,BGD3457678568,Male,Bangladeshi,CAD4573,Dhaka,Toronto,07 Jun 2024; 21:20,Airbus A380,9C

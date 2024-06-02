@@ -44,7 +44,7 @@ public class FlightSearching extends JFrame {
         gbc.gridy = 0;
         searchPanel.add(sourceLabel, gbc);
 
-        sourceComboBox = new JComboBox<>(new String[]{"Dhaka", "Chittagong", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
+        sourceComboBox = new JComboBox<>(new String[]{"Dhaka", "Chittagong", "Sylhet", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
         gbc.gridx = 1;
         gbc.gridy = 0;
         searchPanel.add(sourceComboBox, gbc);
@@ -55,7 +55,7 @@ public class FlightSearching extends JFrame {
         gbc.gridy = 0;
         searchPanel.add(destinationLabel, gbc);
 
-        destinationComboBox = new JComboBox<>(new String[]{"Dhaka", "Chittagong", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
+        destinationComboBox = new JComboBox<>(new String[]{"Dhaka", "Chittagong", "Sylhet", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
         gbc.gridx = 3;
         gbc.gridy = 0;
         searchPanel.add(destinationComboBox, gbc);
@@ -63,10 +63,9 @@ public class FlightSearching extends JFrame {
         JButton searchButton = new JButton("Search");
         gbc.gridx = 4;
         gbc.gridy = 0;
-        searchButton.setPreferredSize(new Dimension(100, 10));
+        searchButton.setPreferredSize(new Dimension(80, 12));
         searchButton.setBackground(new Color(9, 13, 97));
         searchButton.setFont(new Font("Rowdies", Font.BOLD, 15));
-        searchButton.setMargin(new Insets(10, 5, 10, 5));
         searchButton.setForeground(Color.WHITE);
         searchPanel.add(searchButton, gbc);
 
@@ -95,7 +94,7 @@ public class FlightSearching extends JFrame {
 
         JButton backButton = new JButton("Back");
         backButton.setPreferredSize(new Dimension(100, 30));
-        backButton.setBackground(new Color(9, 13, 97));
+        backButton.setBackground(new Color(146, 19, 19));
         backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         backButton.setForeground(Color.WHITE);
         buttonPanel.add(backButton, gbcButton);

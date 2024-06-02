@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class FlightAssignment extends JFrame {
     private DefaultTableModel flightsTableModel;
     private JComboBox<String> airplaneModelComboBox;
     private Map<String, Integer> airplaneModels;
-    private static final String FILE_PATH = "flights_data.csv";
+    private static final String FILE_PATH = "src\\Data_Storage\\flights_data.csv";
 
     public FlightAssignment() {
         setTitle("Admin Page");
@@ -108,7 +109,7 @@ public class FlightAssignment extends JFrame {
         gbc.gridwidth = 1;
         formPanel.add(sourceLabel, gbc);
 
-        sourceComboBox = new JComboBox<>(new String[]{"Dhaka", "Chittagong", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
+        sourceComboBox = new JComboBox<>(new String[]{"Dhaka","Sylhet", "Chittagong", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
         gbc.gridx = 2;
         gbc.gridy = 2;
         formPanel.add(sourceComboBox, gbc);
@@ -120,7 +121,7 @@ public class FlightAssignment extends JFrame {
         gbc.gridwidth = 1;
         formPanel.add(destinationLabel, gbc);
 
-        destinationComboBox = new JComboBox<>(new String[]{"Dhaka", "Chittagong", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
+        destinationComboBox = new JComboBox<>(new String[]{"Dhaka", "Sylhet", "Chittagong", "Barisal", "London", "Chennai", "Kolkata", "Toronto", "Dubai"});
         gbc.gridx = 3;
         gbc.gridy = 2;
         formPanel.add(destinationComboBox, gbc);
@@ -133,7 +134,7 @@ public class FlightAssignment extends JFrame {
         formPanel.add(takeoffDateLabel, gbc);
 
         takeoffDateSpinner = new JSpinner(new SpinnerDateModel());
-        takeoffDateSpinner.setEditor(new JSpinner.DateEditor(takeoffDateSpinner, "EEE MMM dd HH:mm:ss yyyy"));
+        takeoffDateSpinner.setEditor(new JSpinner.DateEditor(takeoffDateSpinner, "dd MMM yyyy; HH:mm"));
         gbc.gridx = 4;
         gbc.gridy = 2;
         formPanel.add(takeoffDateSpinner, gbc);
@@ -239,7 +240,7 @@ public class FlightAssignment extends JFrame {
         String flightCode = this.flightCode.getText();
         String source = (String) sourceComboBox.getSelectedItem();
         String destination = (String) destinationComboBox.getSelectedItem();
-        String takeoffDate = takeoffDateSpinner.getValue().toString();
+        String takeoffDate = new SimpleDateFormat("dd MMM yyyy; HH:mm").format(takeoffDateSpinner.getValue());
         String aircraft = (String) airplaneModelComboBox.getSelectedItem();
         String seats = seatsField.getText();
 
@@ -259,7 +260,7 @@ public class FlightAssignment extends JFrame {
             String flightCode = this.flightCode.getText();
             String source = (String) sourceComboBox.getSelectedItem();
             String destination = (String) destinationComboBox.getSelectedItem();
-            String takeoffDate = takeoffDateSpinner.getValue().toString();
+            String takeoffDate = new SimpleDateFormat("dd MMM yyyy; HH:mm").format(takeoffDateSpinner.getValue());
             String aircraft = (String) airplaneModelComboBox.getSelectedItem();
             String seats = seatsField.getText();
 

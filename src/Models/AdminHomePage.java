@@ -97,7 +97,9 @@ public class AdminHomePage extends JFrame {
         passengerListButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                PassengerListGUI passengerListGUI = new PassengerListGUI();
+                passengerListGUI.setVisible(true);
+                dispose();
 
             }
         });

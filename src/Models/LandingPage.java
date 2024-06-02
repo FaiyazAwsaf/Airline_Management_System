@@ -30,7 +30,7 @@ public class LandingPage extends JFrame {
         JButton adminButton = new JButton("Admin Login");
         adminButton.setFont(new Font("Freeman", Font.BOLD, 20));
         adminButton.setBackground(new Color(16, 105, 179));
-        adminButton.setPreferredSize(new Dimension(150,50));
+        adminButton.setPreferredSize(new Dimension(200,50));
         adminButton.setMargin(new Insets(10, 5, 10, 5));
         adminButton.setForeground(Color.WHITE);
 
@@ -45,10 +45,10 @@ public class LandingPage extends JFrame {
         });
 
         // User Login Button
-        JButton userButton = new JButton("User Login");
+        JButton userButton = new JButton("Passenger Login");
         userButton.setFont(new Font("Freeman", Font.BOLD, 20));
         userButton.setBackground(new Color(16, 105, 179));
-        userButton.setPreferredSize(new Dimension(150,50));
+        userButton.setPreferredSize(new Dimension(200,50));
         userButton.setMargin(new Insets(10, 5, 10, 5));
         userButton.setForeground(Color.WHITE);
 
