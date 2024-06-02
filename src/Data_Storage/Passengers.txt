@@ -1,3 +1,6 @@
 Yead Ahmed,0172348529,yeadahmed244@gmail.com,URO355,Male,Bangladeshi,4it,Dhaka,Dhaka,02 Jun 2024; 19:44,Boeing 787,154A
 Sadman MK,082345756,saddymaddy@gmail.com,AMR7849785,Female,American,TYR3566,Dhaka,Chittagong,07 Jun 2024; 20:16,Boeing 737,45A
 Faiyaz Awsaf,019945848163,faiyazawsaf@gmail.com,BGD3457678568,Male,Bangladeshi,CAD4573,Dhaka,Toronto,07 Jun 2024; 21:20,Airbus A380,9C
+Nuren Fahmid,01947273425,nurenfahmid123@gmail.com,BGD82375486724,Male,Bangladeshi,TYR3566,Dhaka,Chittagong,07 Jun 2024; 20:16,Boeing 737,62A
+Kazi Tanveer,0132482734,tanveersifat@gmail.com,BGD82345235,Male,Bangladeshi,TYR3566,Dhaka,Barisal,10 Jun 2024; 22:31,Boeing 737,71A
+Samiur Nafiz ,01834535234,samiurnafiz@gmail.com,BGD2349245,Male,Bangladeshi,YFk3442,Sylhet,London,06 Sep 2024; 00:53,Boeing 737,66A

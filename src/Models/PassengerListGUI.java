@@ -36,7 +36,7 @@ public class PassengerListGUI extends JFrame {
     }
 
     private void loadPassengerList() {
-        PassengerList passengerList = new PassengerList();
+        Passenger passengerList = new Passenger();
         List<Passenger> passengers = passengerList.getPassengers();
         for (Passenger passenger : passengers) {
             tableModel.addRow(new Object[]{
