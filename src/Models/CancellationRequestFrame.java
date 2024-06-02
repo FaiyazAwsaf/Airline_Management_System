@@ -5,9 +5,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class CancellationRequestFrame extends JFrame {
@@ -81,17 +85,25 @@ public class CancellationRequestFrame extends JFrame {
         rejectButton.setForeground(Color.WHITE);
         buttonPanel.add(rejectButton, bgbc);
 
+        add(buttonPanel, BorderLayout.SOUTH);
+
         JButton backButton = new JButton("Back");
         bgbc.gridx = 2;
         bgbc.gridy = 0;
         backButton.setPreferredSize(new Dimension(100, 30));
-        backButton.setBackground(new Color(9, 13, 97));
+        backButton.setBackground(new Color(146, 19, 19));
         backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         backButton.setMargin(new Insets(10, 5, 10, 5));
         backButton.setForeground(Color.WHITE);
-        buttonPanel.add(rejectButton, bgbc);
-
-        add(buttonPanel, BorderLayout.SOUTH);
+        buttonPanel.add(backButton, bgbc);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdminHomePage page = new AdminHomePage();
+                page.setVisible(true);
+                dispose();
+            }
+        });
 
         approveButton.addActionListener(new ActionListener() {
             @Override
@@ -111,28 +123,46 @@ public class CancellationRequestFrame extends JFrame {
     private void approveFlightCancellation() {
         int selectedRow = requestsTable.getSelectedRow();
         if (selectedRow >= 0) {
+            String filepath = "src\\Data_Storage\\Passengers.txt";
+            String passportID = getSelectedPassportID();
+            removePassengerInfo(filepath, passportID);
             tableModel.removeRow(selectedRow);
             saveRequestsToFile();
-            saveFlightsToFile();
         } else {
             JOptionPane.showMessageDialog(this, "Please select a flight.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void saveFlightsToFile() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src\\Data_Storage\\Passengers.txt"))) {
-            for (int i = 0; i < tableModel.getRowCount(); i++) {
-                for (int j = 0; j < tableModel.getColumnCount(); j++) {
-                    bw.write(tableModel.getValueAt(i, j).toString());
-                    if (j < tableModel.getColumnCount() - 1) {
-                        bw.write(",");
-                    }
+    private void removePassengerInfo(String filePath, String passportID){
+        Path inputPath = Paths.get(filePath);
+        Path tempPath = Paths.get(filePath + ".tmp");
+
+        try (BufferedReader reader = Files.newBufferedReader(inputPath);
+             BufferedWriter writer = Files.newBufferedWriter(tempPath)) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.contains(passportID)) {
+                    writer.write(line);
+                    writer.newLine();
                 }
-                bw.newLine();
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            Files.delete(inputPath);
+            Files.move(tempPath, inputPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getSelectedPassportID(){
+        int selectedRow = requestsTable.getSelectedRow();
+        return tableModel.getValueAt(selectedRow, 3).toString();
     }
 
     private void rejectFlightCancellation() {
@@ -142,18 +172,6 @@ public class CancellationRequestFrame extends JFrame {
             saveRequestsToFile();
         } else {
             JOptionPane.showMessageDialog(this, "Please select a flight.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void loadRequestsList() {
-        CancellationRequests requests = new CancellationRequests();
-        List<Passenger> passengers = requests.getPassengers();
-        for (Passenger passenger : passengers) {
-            tableModel.addRow(new Object[]{
-                    passenger.getName(), passenger.getContact(), passenger.getEmail(), passenger.getPassportID(),
-                    passenger.getFlightCode(), passenger.getDepartureDateAndTime(), passenger.getDepartureCity(),
-                    passenger.getDestinationCity(), passenger.getAirplaneModel(), passenger.getSeatNumber()
-            });
         }
     }
 
@@ -170,6 +188,18 @@ public class CancellationRequestFrame extends JFrame {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void loadRequestsList() {
+        CancellationRequests requests = new CancellationRequests();
+        List<Passenger> passengers = requests.getPassengers();
+        for (Passenger passenger : passengers) {
+            tableModel.addRow(new Object[]{
+                    passenger.getName(), passenger.getContact(), passenger.getEmail(), passenger.getPassportID(),
+                    passenger.getFlightCode(), passenger.getDepartureDateAndTime(), passenger.getDepartureCity(),
+                    passenger.getDestinationCity(), passenger.getAirplaneModel(), passenger.getSeatNumber()
+            });
         }
     }
 

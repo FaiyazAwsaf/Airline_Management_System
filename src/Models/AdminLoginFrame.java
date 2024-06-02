@@ -34,7 +34,7 @@ public class AdminLoginFrame extends JFrame {
         bgbc.anchor = GridBagConstraints.CENTER;
         JLabel heading = new JLabel("Astra Airlines - Admin Login");
         heading.setFont(new Font("Freeman", Font.BOLD, 25));
-        heading.setForeground(new Color(23, 10, 57));
+        heading.setForeground(new Color(33, 15, 74));
         buttonPanel.add(heading, bgbc);
 
         // Username and password componenets
@@ -97,6 +97,10 @@ public class AdminLoginFrame extends JFrame {
         returnButton = new JButton("Return to Landing Page");
         returnButton.setPreferredSize(new Dimension(200, 15));
         returnButton.setFont(new Font("Freeman", Font.BOLD, 12));
+        returnButton.setBackground(new Color(146, 19, 19));
+        returnButton.setForeground(Color.WHITE);
+
+
 
         returnButton.addActionListener(new ActionListener() {
             @Override

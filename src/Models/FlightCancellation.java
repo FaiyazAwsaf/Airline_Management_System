@@ -68,8 +68,8 @@ public class FlightCancellation extends JFrame{
         gbcButton.gridx = 0;
         gbcButton.gridy = 0;
 
-        JButton cancelButton = new JButton("Cancel");
-        cancelButton.setPreferredSize(new Dimension(100, 30));
+        JButton cancelButton = new JButton("Cancel Flight");
+        cancelButton.setPreferredSize(new Dimension(150, 30));
         cancelButton.setBackground(new Color(9, 13, 97));
         cancelButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         cancelButton.setForeground(Color.WHITE);
@@ -79,7 +79,7 @@ public class FlightCancellation extends JFrame{
 
         JButton backButton = new JButton("Back");
         backButton.setPreferredSize(new Dimension(100, 30));
-        backButton.setBackground(new Color(9, 13, 97));
+        backButton.setBackground(new Color(146, 19, 19));
         backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         backButton.setForeground(Color.WHITE);
         buttonPanel.add(backButton, gbcButton);

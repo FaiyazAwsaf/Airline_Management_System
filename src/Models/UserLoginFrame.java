@@ -31,7 +31,10 @@ public class UserLoginFrame extends JFrame {
         bgbc.gridy = 0;
         bgbc.gridwidth = 2;
         bgbc.anchor = GridBagConstraints.CENTER;
-        buttonPanel.add(new JLabel("Welcome to Astra Airlines"), bgbc);
+        JLabel heading = new JLabel("Welcome to Astra Airlines");
+        heading.setFont(new Font("Freeman", Font.BOLD, 25));
+        heading.setForeground(new Color(33, 15, 74));
+        buttonPanel.add(heading, bgbc);
 
         bgbc.gridx = 0;
         bgbc.gridy = 1;
@@ -79,6 +82,10 @@ public class UserLoginFrame extends JFrame {
         bgbc.anchor = GridBagConstraints.CENTER;
         returnButton = new JButton("Return to Landing Page");
         returnButton.setPreferredSize(new Dimension(200, 15));
+        returnButton.setBackground(new Color(146, 19, 19));
+        returnButton.setForeground(Color.WHITE);
+
+
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
