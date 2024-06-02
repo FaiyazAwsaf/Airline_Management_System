@@ -22,9 +22,66 @@ public class Passenger {
     private String airplaneModel;
     private String seatNumber;
 
+    public Passenger(String name, String contact, String email, String passportID,
+                     String flightCode, String departureDateAndTime, String departureCity, String destinationCity, String seatNumber) {
+        this.name = name;
+        this.contact = contact;
+        this.email = email;
+        this.passportID = passportID;
+        this.flightCode = flightCode;
+        this.departureDateAndTime = departureDateAndTime;
+        this.departureCity = departureCity;
+        this.destinationCity = destinationCity;
+        this.seatNumber = seatNumber;
+    }
+
+    public Passenger(String name, String contact, String email, String passportID,
+                     String flightCode, String departureDateAndTime, String departureCity, String destinationCity,String airplaneModel, String seatNumber) {
+        this.name = name;
+        this.contact = contact;
+        this.email = email;
+        this.passportID = passportID;
+        this.flightCode = flightCode;
+        this.departureDateAndTime = departureDateAndTime;
+        this.departureCity = departureCity;
+        this.destinationCity = destinationCity;
+        this.airplaneModel = airplaneModel;
+        this.seatNumber = seatNumber;
+    }
+    public Passenger(String name, String contact, String email, String passportID, String gender, String nationality,
+                     String flightCode, String departureCity, String destinationCity, String departureDateAndTime,
+                     String airplaneModel, String seatNumber) {
+        this.name = name;
+        this.contact = contact;
+        this.email = email;
+        this.passportID = passportID;
+        this.gender = gender;
+        this.nationality = nationality;
+        this.flightCode = flightCode;
+        this.departureCity = departureCity;
+        this.destinationCity = destinationCity;
+        this.departureDateAndTime = departureDateAndTime;
+        this.airplaneModel = airplaneModel;
+        this.seatNumber = seatNumber;
+    }
+
     public Passenger() {
         passengers = new ArrayList<>();
         loadPassengers();
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n" +
+                "Contact Number: " + contact + "\n" +
+                "Email: " + email + "\n" +
+                "Passport ID: " + passportID + "\n" +
+                "Flight Code: " + flightCode + "\n" +
+                "Departure: " + departureCity + "\n" +
+                "Arrival: " + destinationCity + "\n" +
+                "Departure Date & Time: " + departureDateAndTime + "\n" +
+                "Seat Number: " +  seatNumber + "\n" +
+                "**********************";
     }
 
     private void loadPassengers() {
@@ -43,26 +100,6 @@ public class Passenger {
             e.printStackTrace();
         }
     }
-
-    // Constructor
-    public Passenger(String name, String contact, String email, String passportID, String gender, String nationality,
-                     String flightCode, String departureCity, String destinationCity, String departureDateAndTime,
-                     String airplaneModel, String seatNumber) {
-        this.name = name;
-        this.contact = contact;
-        this.email = email;
-        this.passportID = passportID;
-        this.gender = gender;
-        this.nationality = nationality;
-        this.flightCode = flightCode;
-        this.departureCity = departureCity;
-        this.destinationCity = destinationCity;
-        this.departureDateAndTime = departureDateAndTime;
-        this.airplaneModel = airplaneModel;
-        this.seatNumber = seatNumber;
-    }
-
-    // Getter and Setter methods
 
     public List<Passenger> getPassengers() {
         return passengers;
@@ -163,4 +200,5 @@ public class Passenger {
     public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
+
 }

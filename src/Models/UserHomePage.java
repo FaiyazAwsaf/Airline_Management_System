@@ -81,6 +81,9 @@ public class UserHomePage extends JFrame {
         flightCancellationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                FlightCancellation page = new FlightCancellation();
+                page.setVisible(true);
+                dispose();
             }
         });
 

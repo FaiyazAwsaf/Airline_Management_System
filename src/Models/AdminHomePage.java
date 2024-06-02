@@ -90,7 +90,9 @@ public class AdminHomePage extends JFrame {
         flightCancellationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                CancellationRequestFrame cancellationRequestFrame = new CancellationRequestFrame();
+                cancellationRequestFrame.setVisible(true);
+                dispose();
             }
         });
 
