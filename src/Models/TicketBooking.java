@@ -31,7 +31,7 @@ public class TicketBooking extends JFrame {
         titlePanel.add(titleImage);
         titlePanel.setBackground(new Color(0, 0, 0));
 
-        JPanel formPanel = new JPanel(new GridLayout(10, 4, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(14, 4, 10, 10));
 
         JTextField nameField = new JTextField();
         JTextField contactField = new JTextField();

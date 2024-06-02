@@ -34,10 +34,10 @@ public class FlightCancellation extends JFrame{
         searchPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         searchPanel.setBackground(new Color(225, 217, 203));
 
-        JLabel flightCodeLabel = new JLabel("Enter Flight Code: ");
-        flightCodeLabel.setSize(7, 7);
-        flightCodeLabel.setFont(new Font("Open Sans", Font.BOLD, 15));
-        searchPanel.add(flightCodeLabel);
+        JLabel passportIDLabel = new JLabel("Enter Passport Number: ");
+        passportIDLabel.setSize(7, 7);
+        passportIDLabel.setFont(new Font("Open Sans", Font.BOLD, 15));
+        searchPanel.add(passportIDLabel);
 
         flightCodeField = new JTextField(15);
         searchPanel.add(flightCodeField);
@@ -49,8 +49,7 @@ public class FlightCancellation extends JFrame{
                     String line;
                     while ((line = br.readLine()) != null) {
                         String[] data = line.split(",");
-                        if (data[6].equals(flightCodeField.getText())) {
-                            //Passenger passenger = new Passenger(data[0], data[1],data[2], data[3], data[6], data[10], data[7], data[8], data[11]);
+                        if (data[3].equals(flightCodeField.getText())) {
                             Passenger passenger = new Passenger(data[0], data[1], data[2], data[3], data[6], data[10], data[7], data[8], data[11]);
                             JOptionPane.showMessageDialog(null, passenger.toString(), "Ticket Information", JOptionPane.INFORMATION_MESSAGE);
                         }
@@ -94,11 +93,9 @@ public class FlightCancellation extends JFrame{
                     String line;
                     while ((line = br.readLine()) != null) {
                         String[] data = line.split(",");
-                        if (data[6].equals(flightCodeField.getText())) {
+                        if (data[3].equals(flightCodeField.getText())) {
                             Passenger passenger = new Passenger(data[0], data[1], data[2], data[3], data[6], data[9], data[7], data[8], data[11]);
                             storePassengerInfo(data[0], data[1], data[2], data[3], data[6], data[9], data[7], data[8], data[10], data[11]);
-//                            CancellationRequests requests = new CancellationRequests();
-//                            requests.addCancellingPassengers(passenger);
                             JOptionPane.showMessageDialog(null,"Your cancellation request is under processing","Request Accepted", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }
