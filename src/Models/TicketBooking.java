@@ -65,8 +65,22 @@ public class TicketBooking extends JFrame {
         dateField.setEditable(false);
 
         JButton bookButton = new JButton("Book Ticket");
+        bookButton.setPreferredSize(new Dimension(150, 30));
+        bookButton.setBackground(new Color(9, 13, 97));
+        bookButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        bookButton.setForeground(Color.WHITE);
+
         JButton resetButton = new JButton("Reset");
+        resetButton.setPreferredSize(new Dimension(150, 30));
+        resetButton.setBackground(new Color(9, 13, 97));
+        resetButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        resetButton.setForeground(Color.WHITE);
+
         JButton backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(150, 30));
+        backButton.setBackground(new Color(149, 16, 16));
+        backButton.setFont(new Font("Rowdies", Font.BOLD, 15));
+        backButton.setForeground(Color.WHITE);
 
         formPanel.add(new JLabel("Name:"));
         formPanel.add(nameField);

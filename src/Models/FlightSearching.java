@@ -83,8 +83,8 @@ public class FlightSearching extends JFrame {
         gbcButton.gridx = 0;
         gbcButton.gridy = 0;
 
-        JButton selectButton = new JButton("Select");
-        selectButton.setPreferredSize(new Dimension(100, 30));
+        JButton selectButton = new JButton("Select Flight");
+        selectButton.setPreferredSize(new Dimension(150, 30));
         selectButton.setBackground(new Color(9, 13, 97));
         selectButton.setFont(new Font("Rowdies", Font.BOLD, 15));
         selectButton.setForeground(Color.WHITE);
