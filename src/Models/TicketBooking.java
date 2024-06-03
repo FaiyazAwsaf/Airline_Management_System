@@ -87,7 +87,7 @@ public class TicketBooking extends JFrame {
         formPanel.add(departureField);
         formPanel.add(new JLabel("Arriving City:"));
         formPanel.add(arrivalField);
-        formPanel.add(new JLabel("Date (YYYY-MM-DD):"));
+        formPanel.add(new JLabel("Departure Date:"));
         formPanel.add(dateField);
         formPanel.add(new JLabel("Aircraft Model:"));
         formPanel.add(aircraftModelField);
